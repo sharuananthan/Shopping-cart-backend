@@ -8,6 +8,7 @@ export const config: TypeOrmModuleOptions={
     host:'127.0.0.1',
     database:'shopping_db',
     synchronize:true,
+    autoLoadEntities:true,
     entities: ['dist/**/*.entity{.ts,.js}'],
 
 

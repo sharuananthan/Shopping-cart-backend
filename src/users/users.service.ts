@@ -6,12 +6,12 @@ export class UserService {
     
 
     private users: User[] =[
-{
-    id:0,
-    name:'Bob',
-    email:'bob@gmail.com',
-    password:'bobPass'
-}
+// {
+//     id:0,
+//     name:'Bob',
+//     email:'bob@gmail.com',
+//     password:'bobPass'
+// }
     ];
 
 

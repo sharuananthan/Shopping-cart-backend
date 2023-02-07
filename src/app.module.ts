@@ -6,11 +6,12 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import {config} from './orm.config'
 import { UsersModule } from './users/users.module';
+import { ProductsModule } from './products/products.module';
 
 
 @Module({
  // imports: [TypeOrmModule.forRoot(config), UsersModule,AuthModule, ConfigModule.forRoot()],
- imports: [UsersModule, AuthModule, ConfigModule.forRoot()],
+ imports: [UsersModule, AuthModule,ProductsModule, ConfigModule.forRoot({isGlobal:true}),TypeOrmModule.forRoot(config)],
  controllers: [AppController],
   providers: [AppService],
 })
