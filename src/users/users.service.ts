@@ -5,15 +5,6 @@ import { User } from './entities/user.entity';
 export class UserService {
     
 
-    private users: User[] =[
-// {
-//     id:0,
-//     name:'Bob',
-//     email:'bob@gmail.com',
-//     password:'bobPass'
-// }
-    ];
-
 
     findByEmail(email:string):Promise<User | undefined>{
         const user = this.users.find((user)=>user.email===email);
