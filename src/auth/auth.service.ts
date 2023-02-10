@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { sign ,verify} from 'jsonwebtoken';
 
 import { User } from 'src/users/entities/user.entity';
-import { UserService } from 'src/users/users.service';
+import { UsersService } from 'src/users/users.service';
 import RefreshToken from './entities/refresh-token.entity';
 
 
@@ -10,7 +10,7 @@ import RefreshToken from './entities/refresh-token.entity';
 export class AuthService {
     private refreshTokens:RefreshToken[] = [];
 
-    constructor(private readonly userService: UserService){}
+    constructor(private readonly userService: UsersService){}
 
     async refresh(refreshStr: string): Promise<string | undefined> {
         const refreshToken = await this.retrieveRefreshToken(refreshStr);
