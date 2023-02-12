@@ -4,10 +4,8 @@ import { TypeOrmModule } from '@nestjs/typeorm/dist';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-
-import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
-
+import { UsersModule } from './users/users.module';
 
 @Module({
  // imports: [TypeOrmModule.forRoot(config), UsersModule,AuthModule, ConfigModule.forRoot()],
@@ -21,7 +19,7 @@ import { ProductsModule } from './products/products.module';
         port:5432,
         host:'127.0.0.1',
         database:'shopping_db',
-        synchronize:true,
+        synchronize:false,
         autoLoadEntities:true,
         entities: ['dist/**/*.entity{.ts,.js}'],
     
