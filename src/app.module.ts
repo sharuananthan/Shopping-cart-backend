@@ -19,7 +19,7 @@ import { UsersModule } from './users/users.module';
         port:5432,
         host:'127.0.0.1',
         database:'shopping_db',
-        synchronize:false,
+        synchronize:true,
         autoLoadEntities:true,
         entities: ['dist/**/*.entity{.ts,.js}'],
     
