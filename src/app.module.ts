@@ -6,10 +6,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { ProductsModule } from './products/products.module';
 import { UsersModule } from './users/users.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
  // imports: [TypeOrmModule.forRoot(config), UsersModule,AuthModule, ConfigModule.forRoot()],
- imports: [UsersModule, AuthModule,ProductsModule, ConfigModule.forRoot({isGlobal:true}),TypeOrmModule.forRootAsync({
+ imports: [UsersModule, AuthModule,ProductsModule,OrdersModule, ConfigModule.forRoot({isGlobal:true}),TypeOrmModule.forRootAsync({
     imports: [ConfigModule],
     useFactory: async (configService: ConfigService) => ({
       
@@ -25,7 +26,7 @@ import { UsersModule } from './users/users.module';
     
  }),
     inject: [ConfigService],
-  })
+  }), 
 ],
  controllers: [AppController],
   providers: [AppService],
