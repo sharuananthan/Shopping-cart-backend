@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { count } from 'console';
 import { Repository } from 'typeorm';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -18,8 +19,15 @@ export class OrdersService {
   }
 
   findAll() {
-    return this.ordersRepository.find();
+    //Group by product id 
+    return this.ordersRepository.createQueryBuilder("order")
+      .select("COUNT(order.productId)", "productId")
+      .groupBy("order.productId");
+      
+
   }
+
+  
 
   findOne(id: number) {
     return `This action returns a #${id} order`;

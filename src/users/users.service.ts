@@ -19,10 +19,9 @@ export class UsersService {
     return this.usersRepository.save(user);
   }
 
-   findOne(username:string): Promise<User | undefined> {
+   findUser(username:string): Promise<User> {
     return  this.usersRepository.findOne({
-      select:["userId","userName","email","password"],
-      where: { userName: username }
+      where: {userName: username }
     });
   }
   

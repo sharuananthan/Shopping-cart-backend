@@ -9,7 +9,8 @@ import { Repository } from 'typeorm';
 export class ProductsService {
 
   constructor(
-    @InjectRepository(Product) private readonly productsRepository: Repository<Product>
+    @InjectRepository(Product) private readonly productsRepository: Repository<Product>,
+    
   ) { }
   
 
@@ -19,6 +20,7 @@ export class ProductsService {
   }
 
   findAll() {
+
     return this.productsRepository.find();
   }
 
@@ -35,10 +37,5 @@ export class ProductsService {
   }
 }
 
-export class FileSizeValidationPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
-    // "value" is an object containing the file's attributes and metadata
-    const oneKb = 1000;
-    return value.size < oneKb;
-  }
-}
+
+

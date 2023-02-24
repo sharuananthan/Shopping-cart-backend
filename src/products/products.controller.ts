@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, ParseFilePipe, HttpStatus, ParseFilePipeBuilder } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Request, UseGuards, ParseFilePipe, HttpStatus, ParseFilePipeBuilder } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -7,6 +7,7 @@ import { UploadedFile, UseInterceptors } from '@nestjs/common/decorators';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { SampleDto } from './dto/sample.dto';
 import { Express } from 'express';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('products')
 export class ProductsController {
@@ -17,8 +18,9 @@ export class ProductsController {
     return this.productsService.create(createProductDto); 
   }
 
+  //@UseGuards(JwtAuthGuard)
   @Get()
-  async findAll() {
+  findAll() {
     return this.productsService.findAll();
   }
 
