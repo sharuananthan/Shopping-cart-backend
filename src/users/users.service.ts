@@ -9,23 +9,20 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-
   constructor(
-    @InjectRepository(User) private readonly usersRepository: Repository<User>
-  ) { }
+    @InjectRepository(User) private readonly usersRepository: Repository<User>,
+  ) {}
 
   create(createUserDto: CreateUserDto) {
     const user = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(user);
   }
 
-   findUser(username:string): Promise<User> {
-    return  this.usersRepository.findOne({
-      where: {userName: username }
+  findUser(username: string): Promise<User> {
+    return this.usersRepository.findOne({
+      where: { userName: username },
     });
   }
-  
-  
 
   // private readonly users = [
   //   {

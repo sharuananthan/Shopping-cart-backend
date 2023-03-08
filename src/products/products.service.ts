@@ -1,31 +1,37 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { Product } from './entities/product.entity'; 
+import { Injectable } from '@nestjs/common';
+import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductsService {
-
   constructor(
-    @InjectRepository(Product) private readonly productsRepository: Repository<Product>,
-    
-  ) { }
-  
+    @InjectRepository(Product)
+    private readonly productsRepository: Repository<Product>,
+  ) {}
 
   create(createProductDto: CreateProductDto) {
-    const product= this.productsRepository.create(createProductDto);
+    const product = this.productsRepository.create(createProductDto);
     return this.productsRepository.save(product);
   }
 
   findAll() {
-
     return this.productsRepository.find();
   }
 
+  async findByName(name: string): Promise<Product[]> {
+    const products = await this.productsRepository.find({
+      where: {
+        productName: ILike(`%${name}%`),
+      },
+    });
+    return products;
+  }
+
   findOne(productId: number) {
-    return "This action returns a #${id} product"
+    return 'This action returns a #${id} product';
   }
 
   update(id: number, updateProductDto: UpdateProductDto) {
@@ -36,6 +42,3 @@ export class ProductsService {
     return `This action removes a #${id} product`;
   }
 }
-
-
-
